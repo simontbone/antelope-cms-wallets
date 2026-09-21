@@ -1,0 +1,20 @@
+{
+  "name": "antelope-cms-wallets",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared Anchor and WAX My Cloud Wallet integration for WordPress and Drupal.",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "package": "node scripts/package.mjs"
+  },
+  "dependencies": {
+    "@wharfkit/session": "^1.6.1",
+    "@wharfkit/wallet-plugin-anchor": "^1.7.3",
+    "@wharfkit/wallet-plugin-cloudwallet": "^1.6.5",
+    "@wharfkit/web-renderer": "^1.4.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
