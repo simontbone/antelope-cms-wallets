@@ -1,0 +1,26 @@
+name: Verify chain presets
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/chain-presets.json'
+      - 'scripts/test-presets.mjs'
+      - 'packages/wallet-core/src/presets.js'
+      - '.github/workflows/verify-chain-presets.yml'
+  pull_request:
+    paths:
+      - 'config/chain-presets.json'
+      - 'scripts/test-presets.mjs'
+      - 'packages/wallet-core/src/presets.js'
+      - '.github/workflows/verify-chain-presets.yml'
+  workflow_dispatch:
+
+jobs:
+  live-rpc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run test:presets:live
