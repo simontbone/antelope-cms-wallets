@@ -1,0 +1,4 @@
+administer antelope wallets:
+  title: 'Administer Antelope Wallets'
+  description: 'Configure blockchain endpoints and wallet support.'
+  restrict access: true
