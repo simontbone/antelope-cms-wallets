@@ -2,6 +2,7 @@ import {SessionKit, BrowserLocalStorage} from '@wharfkit/session'
 import {WebRenderer} from '@wharfkit/web-renderer'
 import {WalletPluginAnchor} from '@wharfkit/wallet-plugin-anchor'
 import {WalletPluginCloudWallet} from '@wharfkit/wallet-plugin-cloudwallet'
+import {CHAIN_PRESETS, WAX_CHAIN_ID} from './presets.js'
 
 const instances = new WeakMap()
 
@@ -15,15 +16,18 @@ function emit(root, name, detail = {}) {
 
 function normalizeConfig(root) {
   const globalConfig = window.AntelopeCMS || window.drupalSettings?.antelopeWallets || {}
+  const networkPreset = root.dataset.networkPreset || globalConfig.networkPreset || 'wax'
+  const preset = CHAIN_PRESETS[networkPreset] || CHAIN_PRESETS.wax
   return {
+    networkPreset,
     appName: root.dataset.appName || globalConfig.appName || 'Antelope CMS Wallet',
-    chainId: root.dataset.chainId || globalConfig.chainId || '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4',
-    rpcEndpoint: root.dataset.rpcEndpoint || globalConfig.rpcEndpoint || 'https://wax.greymass.com',
-    tokenContract: root.dataset.tokenContract || globalConfig.tokenContract || 'eosio.token',
-    tokenSymbol: root.dataset.tokenSymbol || globalConfig.tokenSymbol || 'WAX',
-    tokenPrecision: Number(root.dataset.tokenPrecision || globalConfig.tokenPrecision || 8),
+    chainId: root.dataset.chainId || globalConfig.chainId || preset.chain_id,
+    rpcEndpoint: root.dataset.rpcEndpoint || globalConfig.rpcEndpoint || preset.rpc_endpoint,
+    tokenContract: root.dataset.tokenContract || globalConfig.tokenContract || preset.token_contract,
+    tokenSymbol: root.dataset.tokenSymbol || globalConfig.tokenSymbol || preset.token_symbol,
+    tokenPrecision: Number(root.dataset.tokenPrecision || globalConfig.tokenPrecision || preset.token_precision),
     enableAnchor: String(root.dataset.enableAnchor ?? globalConfig.enableAnchor ?? '1') !== '0',
-    enableCloudWallet: String(root.dataset.enableCloudWallet ?? globalConfig.enableCloudWallet ?? '1') !== '0'
+    enableCloudWallet: String(root.dataset.enableCloudWallet ?? globalConfig.enableCloudWallet ?? (preset.enable_cloud_wallet ? '1' : '0')) !== '0'
   }
 }
 
@@ -38,9 +42,10 @@ class AntelopeWalletWidget {
 
   async init() {
     const plugins = []
+    const isWax = this.config.chainId.toLowerCase() === WAX_CHAIN_ID
     if (this.config.enableAnchor) plugins.push(new WalletPluginAnchor())
-    if (this.config.enableCloudWallet) plugins.push(new WalletPluginCloudWallet())
-    if (!plugins.length) throw new Error('At least one wallet must be enabled.')
+    if (this.config.enableCloudWallet && isWax) plugins.push(new WalletPluginCloudWallet())
+    if (!plugins.length) throw new Error('At least one compatible wallet must be enabled. Anchor is required for non-WAX networks.')
 
     this.sessionKit = new SessionKit({
       appName: this.config.appName,
@@ -217,7 +222,7 @@ export function initAntelopeWallets(scope = document) {
   scope.querySelectorAll('[data-antelope-wallet]').forEach(root => boot(root))
 }
 
-window.AntelopeWallets = {init: initAntelopeWallets, boot}
+window.AntelopeWallets = {init: initAntelopeWallets, boot, presets: CHAIN_PRESETS}
 
 document.addEventListener('DOMContentLoaded', () => initAntelopeWallets())
 document.addEventListener('drupalBehaviorAttach', () => initAntelopeWallets())
