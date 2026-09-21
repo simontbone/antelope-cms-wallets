@@ -1,0 +1,10 @@
+wallet:
+  version: 0.1.0
+  js:
+    antelope-wallets.js: { minified: true }
+  css:
+    theme:
+      antelope-wallets.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
