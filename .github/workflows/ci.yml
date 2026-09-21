@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+      - run: npm run build
+      - name: PHP syntax
+        run: |
+          php -l wordpress/antelope-wallets/antelope-wallets.php
+          php -l drupal/antelope_wallets/src/Form/AntelopeWalletsSettingsForm.php
+          php -l drupal/antelope_wallets/src/Plugin/Block/AntelopeWalletBlock.php
+      - run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: antelope-cms-wallets
+          path: dist/*.zip
