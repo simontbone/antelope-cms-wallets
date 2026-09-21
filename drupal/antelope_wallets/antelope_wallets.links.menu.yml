@@ -1,0 +1,5 @@
+antelope_wallets.settings:
+  title: 'Antelope Wallets'
+  description: 'Configure Anchor and WAX My Cloud Wallet integration.'
+  route_name: antelope_wallets.settings
+  parent: system.admin_config_services
