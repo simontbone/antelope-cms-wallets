@@ -3,6 +3,7 @@ antelope_wallets.settings:
   label: 'Antelope Wallets settings'
   mapping:
     app_name: { type: string, label: 'Application name' }
+    network_preset: { type: string, label: 'Network preset' }
     chain_id: { type: string, label: 'Chain ID' }
     rpc_endpoint: { type: uri, label: 'RPC endpoint' }
     token_contract: { type: string, label: 'Token contract' }

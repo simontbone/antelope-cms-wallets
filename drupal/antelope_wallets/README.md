@@ -1,3 +1,3 @@
 # Antelope Wallets for Drupal
 
-Install this directory as `web/modules/custom/antelope_wallets`, enable the module, configure it at `/admin/config/services/antelope-wallets`, then place the **Antelope wallet** block.
+Enable the module, configure `/admin/config/services/antelope-wallets`, choose the WAX, Telos, Vaulta, or Custom network configuration, then place the **Antelope wallet** block. Anchor supports all included presets; WAX My Cloud Wallet is WAX-only.

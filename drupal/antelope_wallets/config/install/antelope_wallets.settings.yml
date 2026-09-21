@@ -1,4 +1,5 @@
 app_name: 'Antelope CMS Wallet'
+network_preset: 'wax'
 chain_id: '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4'
 rpc_endpoint: 'https://wax.greymass.com'
 token_contract: 'eosio.token'
