@@ -1,0 +1,7 @@
+antelope_wallets.settings:
+  path: '/admin/config/services/antelope-wallets'
+  defaults:
+    _form: '\Drupal\antelope_wallets\Form\AntelopeWalletsSettingsForm'
+    _title: 'Antelope Wallets'
+  requirements:
+    _permission: 'administer antelope wallets'
