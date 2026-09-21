@@ -1,0 +1,12 @@
+antelope_wallets.settings:
+  type: config_object
+  label: 'Antelope Wallets settings'
+  mapping:
+    app_name: { type: string, label: 'Application name' }
+    chain_id: { type: string, label: 'Chain ID' }
+    rpc_endpoint: { type: uri, label: 'RPC endpoint' }
+    token_contract: { type: string, label: 'Token contract' }
+    token_symbol: { type: string, label: 'Token symbol' }
+    token_precision: { type: integer, label: 'Token precision' }
+    enable_anchor: { type: boolean, label: 'Enable Anchor' }
+    enable_cloud_wallet: { type: boolean, label: 'Enable WAX My Cloud Wallet' }
