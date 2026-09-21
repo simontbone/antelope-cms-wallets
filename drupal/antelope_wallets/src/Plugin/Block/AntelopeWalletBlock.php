@@ -24,7 +24,7 @@ final class AntelopeWalletBlock extends BlockBase {
       '#attached' => [
         'library' => ['antelope_wallets/wallet'],
         'drupalSettings' => ['antelopeWallets' => [
-          'appName'=>$c->get('app_name'), 'chainId'=>$c->get('chain_id'), 'rpcEndpoint'=>$c->get('rpc_endpoint'),
+          'appName'=>$c->get('app_name'), 'networkPreset'=>$c->get('network_preset') ?: 'custom', 'chainId'=>$c->get('chain_id'), 'rpcEndpoint'=>$c->get('rpc_endpoint'),
           'tokenContract'=>$c->get('token_contract'), 'tokenSymbol'=>$c->get('token_symbol'), 'tokenPrecision'=>(int)$c->get('token_precision'),
           'enableAnchor'=>(bool)$c->get('enable_anchor'), 'enableCloudWallet'=>(bool)$c->get('enable_cloud_wallet'),
         ]],
