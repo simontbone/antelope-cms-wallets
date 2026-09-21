@@ -1,0 +1,7 @@
+name: Antelope Wallets
+type: module
+description: 'Anchor and WAX My Cloud Wallet integration for Antelope blockchains using WharfKit.'
+package: Web3
+core_version_requirement: ^10 || ^11
+configure: antelope_wallets.settings
+version: 0.1.0
