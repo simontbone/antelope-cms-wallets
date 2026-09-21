@@ -1,0 +1,29 @@
+{
+  "wax": {
+    "label": "WAX Mainnet",
+    "chain_id": "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",
+    "rpc_endpoint": "https://wax.greymass.com",
+    "token_contract": "eosio.token",
+    "token_symbol": "WAX",
+    "token_precision": 8,
+    "enable_cloud_wallet": true
+  },
+  "telos": {
+    "label": "Telos Mainnet",
+    "chain_id": "4667b205c6838ef70ff7988f6e8257e8be0e1284a2f59699054a018f743b1d11",
+    "rpc_endpoint": "https://telos.greymass.com",
+    "token_contract": "eosio.token",
+    "token_symbol": "TLOS",
+    "token_precision": 4,
+    "enable_cloud_wallet": false
+  },
+  "vaulta": {
+    "label": "Vaulta Mainnet",
+    "chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+    "rpc_endpoint": "https://eos.greymass.com",
+    "token_contract": "core.vaulta",
+    "token_symbol": "A",
+    "token_precision": 4,
+    "enable_cloud_wallet": false
+  }
+}
